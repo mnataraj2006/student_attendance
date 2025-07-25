@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Attendance Manager</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    h2 {
+      color: #2c3e50;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    input, select, button {
+      padding: 8px;
+      margin: 5px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f4f4f4;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Student Attendance Manager</h2>
+
+  <form id="attendanceForm">
+    <input type="text" id="studentName" placeholder="Student Name" required />
+    <select id="status">
+      <option value="Present">Present</option>
+      <option value="Absent">Absent</option>
+      <option value="Late">Late</option>
+    </select>
+    <input type="date" id="date" required />
+    <button type="submit">Add Attendance</button>
+  </form>
+
+  <table id="attendanceTable">
+    <thead>
+      <tr>
+        <th>Student Name</th>
+        <th>Status</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Attendance entries will appear here -->
+    </tbody>
+  </table>
+
+  <script>
+    const form = document.getElementById('attendanceForm');
+    const tableBody = document.querySelector('#attendanceTable tbody');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('studentName').value;
+      const status = document.getElementById('status').value;
+      const date = document.getElementById('date').value;
+
+      const row = document.createElement('tr');
+      row.innerHTML = `<td>${name}</td><td>${status}</td><td>${date}</td>`;
+      tableBody.appendChild(row);
+
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
